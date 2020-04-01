@@ -1,0 +1,89 @@
+﻿
+@{
+    ViewBag.Title = "Result";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+    var _count = ViewBag._Count;
+}
+
+    <html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+        <script src="~/Scripts/jquery-3.4.1.slim.min.js"></script>
+        <script src="~/Scripts/js/loader.js"></script>
+    </head>
+    <body>
+        <div style="height:100px;"></div>
+        <main class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item"><a href="" data-target="#lastExamstatistic" data-toggle="tab" class="nav-link active">Final Exam Chart</a></li>
+                    </ul>
+                    <div class="tab-pane active" id="lastExamstatistic">
+                        <br />
+                        <h5>Exam Graph.</h5>
+                        @Html.ActionLink("You can view personal data.", "PersonalArea", "Result", new { area = "" }, new { @class = "navbar-brand " })
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h2>Your final test completed at @ViewBag._Res percent.</h2>
+                            <br />
+                            <h4>Exams:</h4>
+                            <div id="areachart_div"></div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="tab-pane" id="categoryStatistic">
+                    <div class="form-group row">
+
+                    </div>
+                </div>
+            </div>
+        </main>
+        <script type="text/javascript">
+    google.charts.load('current', {
+        packages: ['corechart']
+    }).then(function () {
+        $.ajax({
+                type: "POST",
+                dataType: "json",
+                contentType: "application/json",
+                url: '@Url.Action("LastFreeExam", "Result")',
+                success: function (result) {
+                    console.log(result);
+                    drawChart(result);
+                }
+            });
+        function drawChart(result) {
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Date');
+            data.addColumn('number', 'Point');
+            var dataArray = [];
+            $.each(result, function (i, obj) {
+                var date = new Date(parseInt(obj.Date))
+                dataArray.push([obj.Date.toString(),parseInt(obj.Point)]);
+            });
+            data.addRows(dataArray);
+            var areachart_options = {
+                title: 'Student Performance',
+                width: 800,
+                height: 600,
+                is3D: true,
+                animation:{
+                    duration: 100,
+                    easing: 'out',
+                },
+                vAxis: {minValue:0, maxValue:@_count}
+            };
+            var areachart = new google.visualization.AreaChart(document.getElementById('areachart_div'));
+            areachart.draw(data, areachart_options);
+        }
+    });
+        </script>
+    </body>
+    </html>
+

@@ -1,0 +1,52 @@
+﻿@using TestingSys.WebUI.Infrastructure.ViewModels
+@model NavigationViewModel
+
+    
+        @foreach (var link in Model.Categories)
+        {
+
+            @Html.RouteLink(link, new
+            {
+                controller = "Course",
+                action = "DisplayCourse",
+                category = link,
+                page = 1,
+
+            }, new
+            {
+                @class = "btn  btn-default btn-lg " + (link == ViewBag.SelectedCategory ? "btn-primary " : "")
+            })
+        }
+
+        @foreach (var itemComplexity in Model.Complexity) 
+        {
+            @Html.RouteLink(itemComplexity, new 
+            {
+                controller = "Course",
+                action = "DisplayCourse",
+                page = 1,
+                complexity = itemComplexity 
+            }, new
+            {
+                @class = "btn  btn-default btn-lg " + (itemComplexity == ViewBag.SelectedComplexity ? "btn-primary " : "")
+            })
+        
+        }
+            
+        
+            @Html.RouteLink("Sort by fewer questions", new 
+            {
+                controller = "Course",
+                action = "DisplayCourse",
+                page = 1,
+                count = ViewBag.Counter
+            }, new
+            {
+                @class = "btn  btn-default btn-lg  " 
+            })
+        
+        
+
+        
+
+

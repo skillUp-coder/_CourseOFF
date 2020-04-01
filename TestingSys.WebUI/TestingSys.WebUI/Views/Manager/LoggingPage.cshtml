@@ -1,0 +1,61 @@
+﻿@model IEnumerable<TestingSys.Domain.Entities.Visitor>
+@{
+    ViewBag.Title = "LoggingPage";
+    Layout = "~/Views/Shared/_LayoutManager_Second.cshtml";
+}
+
+    <html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title></title>
+    </head>
+    <body>
+        <section class="page-section resume-section p-3 p-lg-5 d-flex align-items-center" id="services">
+            <div class="container">
+                <h2 class="text-center mt-0">Customer actions.</h2>
+                <div class="row justify-content-center">
+
+                    <table class="table">
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Ip)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(x => x.ControllerName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(x => x.ActionName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Date)
+                            </th>
+                            <th></th>
+                        </tr>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Ip)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ControllerName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ActionName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Date)
+                                </td>
+
+                            </tr>
+                        }
+
+                    </table>
+                </div>
+            </div>
+
+        </section>
+    </body>
+    </html>
+

@@ -1,0 +1,64 @@
+﻿@model   IEnumerable<TestingSys.Domain.Entities.User>
+@{
+    ViewBag.Title = "DisplayUsers";
+    Layout = "~/Views/Shared/_LayoutAdmin_Second.cshtml";
+}
+
+    <html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        
+    </head>
+    <body>
+        <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="clients">
+            <div class="w-100">
+                <div class=" search-box">
+                    <h2 class="mb-5">Clients.</h2>
+                    <br />
+                    <div class="">
+                        <div class="">
+                            <h5 class="">Search clients: </h5>
+                        </div>
+                        <div class="">
+                            <input type="text" id="search" onkeyup="myFunction()" class="" placeholder="Search...">
+
+                        </div>
+                    </div>
+                </div>
+
+                <br />
+
+                <div class="search-list">
+                    <table class="table" id="myTable">
+                        <thead>
+                            <tr>
+                                <th>Email</th>
+                                <th>First Name</th>
+                                <th>Last name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                            <tr>
+                                <td>@item.Email</td>
+                                <td>@item.FirstName</td>
+                                <td>@item.LastName</td>
+                                <td><p><a class="btn btn-success" href="~/Admin/LockOutUsers/@item.UserId">Block</a></p></td>
+                                <td><p><a class="btn btn-danger" href="~/Admin/UnLockUsers/@item.UserId">Unblock</a></p></td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </section>
+
+
+
+
+        <script src="~/Scripts/jquery-3.4.1.slim.min.js"></script>
+        <script src="~/Scripts/js/studentSearchJS.js"></script>
+    </body>
+    </html>
+

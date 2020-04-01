@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/Content/css/StylesLayoutUser.css" rel="stylesheet" />
+    <link href="~/Scripts/js/FontAwesome.js" rel="stylesheet" />
+    <link href="~/Content/css/GoogleFontSans.css" rel="stylesheet" />
+    <link href="~/Content/css/GoogleFontsItalic.css" rel="stylesheet" />
+    <link href="~/Content/css/DisplayCourseStyle.css" rel="stylesheet" />
+</head>
+
+<body id="page-top">
+    <nav id="page-top">
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand js-scroll-trigger" href="~/Course/DisplayCourse/">CourseOFF</a><button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto my-2 my-lg-0">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            using (Html.BeginForm("LogOut", "Account", FormMethod.Post))
+                            {
+                                @Html.AntiForgeryToken()
+                                <li class="nav-item"><input class="btn nav-link" style="padding:0px; margin:0px;" type="submit" name="name" value="Log Out @User.Identity.Name" /></li>
+                            }
+                        }
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </nav>
+    @*<header style="height:50px;">
+    </header>*@
+    <div>
+        @RenderSection("Head",required:false)
+    </div>
+        <div>
+            @RenderBody()
+            <hr />
+            <footer class="bg-light py-5">
+                <div class="container"><div class="small text-center text-muted"><p>&copy; @DateTime.Now.Year - CourseOFF. Demianets Artur </p></div></div>
+            </footer>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+        <script src="~/Scripts/js/scripts.js"></script>
+</body>
+</html>

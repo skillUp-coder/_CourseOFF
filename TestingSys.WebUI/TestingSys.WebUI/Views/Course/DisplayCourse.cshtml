@@ -1,0 +1,67 @@
+﻿@model TestingSys.WebUI.Infrastructure.ViewModels.CourseViewModel
+@using TestingSys.WebUI.Infrastructure.Helpers
+@{
+    ViewBag.Title = "DisplayCourse";
+}
+
+    <html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title></title>
+    </head>
+    <body>
+        <main>
+            @section Menu
+            {
+                @Html.Action("Menu", "Navigation")
+                
+            }
+            <section class="page-section " id="services">
+                <div class="container">
+                    <h2 class="text-center mt-0">Courses</h2>
+                    <hr class="divider my-4" />
+                    <div class="row justify-content-center">
+
+                        @foreach (var itemCourse in Model.Courses)
+                        {
+                            <div class="col-lg-3 col-md-6 text-center">
+                                <div class="mt-5">
+
+                                    <h3 class="h4 mb-2">@itemCourse.CourseName</h3>
+                                    <h4>@itemCourse.Complexity</h4>
+                                    <p class="text-muted mb-0">An actual ACT @itemCourse.CourseName Test contains @itemCourse.Counter questions to be answered in @itemCourse.ExamTime minutes.</p>
+                                    <p><a class=" btn" href="~/Course/TestList/@itemCourse.CourseId">Pass the test</a></p>
+                                </div>
+                            </div>
+
+                        }
+                    </div>
+                </div>
+
+            </section>
+
+            <div class="btn-group pull-right" style="margin-left: 20px;">
+                @Html.PageLinks(Model.info, x => Url.Action("DisplayCourse", new { page = x }))
+            </div>
+
+            <hr />
+
+
+
+            <section class="page-section bg-primary" id="about">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8 text-center">
+                            <h2 class="text-black-50 mt-0">About Us</h2>
+                            <hr class="divider light my-4" />
+                            <p class="text-black-50 mb-4">Our goal: to offer effective digital testing to students around the world, a more pleasant user experience and better knowledge retention.</p>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+    </body>
+    </html>
+
+

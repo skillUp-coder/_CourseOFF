@@ -1,0 +1,50 @@
+﻿@model  TestingSys.Domain.Entities.Course
+@{
+    ViewBag.Title = "EditDataCourse";
+    Layout = "~/Views/Shared/_LayoutAdmin_Second.cshtml";
+}
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link href="~/Content/css/mainForm.css" rel="stylesheet" />
+</head>
+<body>
+    <main class="container">
+        <div class="row">
+            <div class="col-md-12">
+                @using (Html.BeginForm("EditDatasCourse", "Course", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    <div id="contact-form" class="form-container" data-form-container="">
+                        <div class="container">
+                            <h2 class="text-center">Edit @Model.CourseName Course</h2>
+                        </div>
+                        <div class="input-container">
+                            <div class="row">
+                                <span class="req-input">
+                                    <span class="input-status" data-toggle="tooltip" data-placement="top" title="Edit the Course name."> </span>
+                                    <input type="text" name="category" maxlength="50" placeholder="Edit the Course name..." required>
+                                </span>
+                            </div>
+                            <div class="row" style="">
+                                <p style="padding:0px;margin:0px;">Edit Time: </p>
+                                <input class="form-control" type="number" name="time" min="0" max="60" placeholder="Enter the Time..." required>
+                            </div>
+                            <br />
+                            <div class="row submit-row">
+                                <button type="submit" class="btn btn-success">Edit</button>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                }
+            </div>
+        </div>
+    </main>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+</html>
+

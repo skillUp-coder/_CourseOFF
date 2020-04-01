@@ -1,0 +1,41 @@
+﻿@model IEnumerable<TestingSys.Domain.Entities.Course>
+@{
+    ViewBag.Title = "EditCourses";
+    Layout = "~/Views/Shared/_LayoutAdmin_Second.cshtml";
+}
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <main class="container">
+
+        <section class="page-section resume-section p-3 p-lg-5 d-flex align-items-center" id="services">
+            <div class="container">
+                <h2 class="text-center mt-0">Edit Courses.</h2>
+                <hr class="divider my-4" />
+                <div class="row justify-content-center">
+
+                    @foreach (var itemCourse in Model)
+                    {
+                        <div class="col-lg-3 col-md-6 text-center">
+                            <div class="mt-5">
+
+                                <h3 class="h4 mb-2">@itemCourse.CourseName</h3>
+                                <h4>@itemCourse.Complexity</h4>
+                                <p class="text-muted mb-0">An actual ACT @itemCourse.CourseName Test contains @itemCourse.Counter questions to be answered in @itemCourse.ExamTime minutes.</p>
+                                <p><a class=" btn btn-danger" href="~/Course/EditDatasCourse/@itemCourse.CourseId">Edit.</a></p>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+</body>
+</html>
+
+
